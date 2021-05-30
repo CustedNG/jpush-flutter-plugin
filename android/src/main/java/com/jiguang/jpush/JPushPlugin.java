@@ -61,7 +61,8 @@ public class JPushPlugin implements FlutterPlugin, MethodCallHandler {
     public void onAttachedToEngine(FlutterPluginBinding flutterPluginBinding) {
         channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "jpush");
         channel.setMethodCallHandler(this);
-        context = flutterPluginBinding.getApplicationContext();
+        Context flutterContext = flutterPluginBinding.getApplicationContext();
+        context = CondomContext.wrap(flutterContext, "JPush");
     }
 
 
@@ -141,7 +142,7 @@ public class JPushPlugin implements FlutterPlugin, MethodCallHandler {
         boolean debug = (boolean) map.get("debug");
         JPushInterface.setDebugMode(debug);
 
-        JPushInterface.init(CondomContext.wrap(context, "JPush"));            // 初始化 JPush
+        JPushInterface.init(context);            // 初始化 JPush
 
         String channel = (String) map.get("channel");
         JPushInterface.setChannel(context, channel);

@@ -25,6 +25,8 @@ import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 
+import com.oasisfeng.condom.CondomContext;
+
 /**
  * JPushPlugin
  */
@@ -139,7 +141,7 @@ public class JPushPlugin implements FlutterPlugin, MethodCallHandler {
         boolean debug = (boolean) map.get("debug");
         JPushInterface.setDebugMode(debug);
 
-        JPushInterface.init(context);            // 初始化 JPush
+        JPushInterface.init(CondomContext.wrap(context, "JPush"));            // 初始化 JPush
 
         String channel = (String) map.get("channel");
         JPushInterface.setChannel(context, channel);

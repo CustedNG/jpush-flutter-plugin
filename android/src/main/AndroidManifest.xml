@@ -28,7 +28,7 @@
         <service android:name=".JPushCustomService"
             android:enabled="true"
             android:exported="false"
-            android:process=":pushcore">
+            android:process="com.jiguang.jpush">
             <intent-filter>
                 <action android:name="cn.jiguang.user.service.action" />
             </intent-filter>
